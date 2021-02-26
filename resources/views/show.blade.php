@@ -20,12 +20,23 @@
         </div>
         <div class="footer">
             <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">delete</button> 
+                <input type="submit" style="display:none">
+                <p class="delete"><span onclick="return delete_check(this);">delete</span></p>
             </form>
             <p><a href="/">戻る</a></p>
         </div>
+        
+        <script>
+            function delete_check(e){
+                "use strict";
+                if (confirm("kesimasu!!")){
+                    document.getElementById("form_{{ $post->id }}").submit();
+                }
+            }
+        </script>
+        
     </body>
 </html>
